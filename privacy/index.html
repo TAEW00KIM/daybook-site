@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Daybook 개인정보 처리방침</title>
+<style>
+  :root { color-scheme: light dark; --fg: #1c1c1e; --sub: #6e6e73; --bg: #ffffff; --line: #e5e5ea; }
+  @media (prefers-color-scheme: dark) { :root { --fg: #f2f2f7; --sub: #98989f; --bg: #000000; --line: #2c2c2e; } }
+  body { margin: 0; background: var(--bg); color: var(--fg); font: 16px/1.65 -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", sans-serif; }
+  main { max-width: 680px; margin: 0 auto; padding: 32px 16px 64px; }
+  h1 { font-size: 26px; margin: 0 0 4px; }
+  h2 { font-size: 18px; margin: 32px 0 8px; padding-top: 16px; border-top: 1px solid var(--line); }
+  .sub { color: var(--sub); font-size: 14px; }
+  ul { padding-left: 20px; }
+  li { margin: 4px 0; }
+  a { color: #0a84ff; }
+</style>
+</head>
+<body>
+<main>
+<h1>Daybook 개인정보 처리방침</h1>
+<p class="sub">시행일: 2026년 10월 12일</p>
+
+<p>Daybook(이하 “앱”)은 개인 개발자가 만들고 운영하는 일정·할 일 앱입니다. 이 방침은 앱과 앱이 쓰는 서버가 어떤 정보를 왜, 얼마나 처리하는지 설명합니다.</p>
+
+<h2>1. 처리하는 정보</h2>
+<ul>
+  <li><b>Apple 로그인 식별자</b>: Apple로 로그인할 때 Apple이 앱에 알려 주는 사용자 식별자입니다. 이름과 이메일 주소는 저장하지 않습니다.</li>
+  <li><b>이용자가 입력한 내용</b>: 일정, 할 일, 카테고리, 메모, 완료 기록, 앱 설정, 되돌리기를 위한 변경 기록.</li>
+  <li><b>기기 이름</b>: 로그인한 기기를 구분하기 위해 기기 이름(예: “iPhone”)을 로그인 정보와 함께 저장합니다.</li>
+  <li><b>알림 토큰</b>: 알림을 켠 경우에만, 알림을 보낼 기기를 가리키는 Apple 푸시 알림 토큰을 저장합니다.</li>
+</ul>
+<p>연락처, 사진, 광고 식별자는 수집하지 않으며, 위치는 아래 3-1의 경우에만 쓰고 저장하지 않습니다. 다른 앱이나 웹사이트에서의 활동을 추적하지 않습니다.</p>
+
+<h2>2. 이용 목적</h2>
+<p>여러 기기 사이의 일정 동기화, 일정·할 일 알림, 로그인 유지에만 씁니다. 광고, 분석, 판매에 쓰지 않습니다.</p>
+
+<h2>3. AI 입력과 공유</h2>
+<p>문장을 일정이나 할 일로 바꾸는 AI 입력은 기기 안의 Apple 모델로 처리합니다. 입력하거나 공유한 문장 자체는 서버로 보내지 않으며, 이용자가 [추가]나 [저장]을 누른 결과(일정·할 일)만 서버에 저장됩니다.</p>
+
+<h2>3-1. 현재 위치 날씨</h2>
+<p>설정에서 <b>현재 위치 날씨</b>를 켠 경우에만 기기의 대략적인 위치를 씁니다. 기기가 좌표를 약 10km 단위로 반올림해 날씨 제공처인 Open-Meteo(open-meteo.com)로 직접 보내 예보를 받습니다. 위치는 Daybook 서버로 보내지 않고 저장하지 않으며, 끄면 더 이상 쓰지 않습니다.</p>
+
+<h2>4. 보관 위치와 기간</h2>
+<ul>
+  <li>정보는 운영자가 대한민국에서 직접 관리하는 서버에 저장되며, 앱과 서버 사이의 통신은 HTTPS로 암호화됩니다.</li>
+  <li>계정을 삭제할 때까지 보관합니다. 휴지통으로 옮긴 항목은 30일 뒤 자동으로 지워집니다.</li>
+  <li>서버 장애에 대비해 매일 백업 사본을 만들고, 백업 사본은 30일 뒤 자동으로 지웁니다.</li>
+</ul>
+
+<h2>5. 계정 삭제(파기)</h2>
+<p>앱의 <b>설정 → 계정 삭제</b>에서 언제든 계정을 지울 수 있습니다. 지우면 서버에 있는 이용자의 모든 일정·할 일과 Apple 로그인 연결이 바로 삭제되고, 기기에 있던 사본도 지워집니다. 백업 사본에 남은 정보는 최대 30일 안에 함께 지워집니다. 삭제한 계정은 되살릴 수 없습니다.</p>
+
+<h2>6. 제3자 제공과 외부 서비스</h2>
+<p>이용자의 정보를 제3자에게 제공하거나 판매하지 않습니다. 다만 기능을 위해 다음 서비스를 거칩니다.</p>
+<ul>
+  <li><b>Apple로 로그인</b>: 본인 확인.</li>
+  <li><b>Apple 푸시 알림 서비스(APNs)</b>: 알림을 켠 경우, 알림 문구(일정 제목과 시각)가 Apple을 거쳐 기기로 전달됩니다.</li>
+  <li><b>Open-Meteo</b>: 현재 위치 날씨를 켠 경우, 대략적인 위치 좌표가 기기에서 Open-Meteo로 직접 전달됩니다(3-1).</li>
+</ul>
+
+<h2>7. 이용자의 권리</h2>
+<p>이용자는 앱에서 자신의 정보를 언제든 보고, 고치고, 지울 수 있으며, 계정 삭제로 모든 정보를 지울 수 있습니다. 그 밖의 열람·정정·삭제·처리정지 요청은 아래 문의처로 보내 주시면 지체 없이 처리합니다.</p>
+
+<h2>8. 안전성 확보 조치</h2>
+<ul>
+  <li>모든 통신을 HTTPS로 암호화합니다.</li>
+  <li>로그인 정보는 기기의 키체인에 저장하고, 서버는 로그인한 이용자 본인의 데이터만 돌려줍니다.</li>
+  <li>서버와 백업에는 운영자만 접근할 수 있습니다.</li>
+</ul>
+
+<h2>9. 아동의 개인정보</h2>
+<p>앱은 만 14세 미만 아동을 대상으로 하지 않으며, 만 14세 미만 아동의 정보를 알면서 수집하지 않습니다.</p>
+
+<h2>10. 개인정보 보호책임자와 문의</h2>
+<p>개인정보 보호책임자: 운영자<br>이메일: <a href="mailto:daybook0819@gmail.com">daybook0819@gmail.com</a></p>
+
+<h2>11. 방침의 변경</h2>
+<p>이 방침이 바뀌면 이 페이지에 시행일과 함께 알립니다.</p>
+
+<h2 lang="en">Privacy Policy (English summary)</h2>
+<div lang="en">
+<p>Daybook is a calendar and task app run by an individual developer. We store only what the app needs to sync your calendar across devices and send reminders: the user identifier Apple provides when you sign in with Apple (no name or email is stored), the events, tasks, categories, notes and settings you enter, your device name, and, if you turn on notifications, an Apple push token.</p>
+<p>We do not collect contacts, photos or advertising identifiers, do not track you, and do not sell or share your data. If you turn on 현재 위치 날씨 (weather for your location), your device sends approximate coordinates (rounded to about 10 km) directly to Open-Meteo to get a forecast; your location is never sent to or stored on our server. AI input runs on your device with Apple's on-device model; only the events or tasks you choose to save are sent to the server. Data is stored on a server operated by the developer in South Korea and sent over HTTPS. Reminder text (event title and time) passes through Apple Push Notification service when notifications are on.</p>
+<p>You can delete your account at any time in <b>Settings → 계정 삭제 (Delete Account)</b>. This immediately deletes your data and Apple sign-in link from the server; daily backups are removed within 30 days. Contact: <a href="mailto:daybook0819@gmail.com">daybook0819@gmail.com</a></p>
+</div>
+</main>
+</body>
+</html>
