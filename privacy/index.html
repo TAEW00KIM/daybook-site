@@ -20,7 +20,7 @@
 <body>
 <main>
 <h1>Daybook 개인정보 처리방침</h1>
-<p class="sub">시행일: 2026년 10월 12일</p>
+<p class="sub">시행일: 2026년 10월 14일</p>
 
 <p>Daybook(이하 “앱”)은 개인 개발자가 만들고 운영하는 일정·할 일 앱입니다. 이 방침은 앱과 앱이 쓰는 서버가 어떤 정보를 왜, 얼마나 처리하는지 설명합니다.</p>
 <p><b>로그인 없이 쓰는 경우</b>: 일정·할 일·카테고리·설정은 이용자의 기기 안에만 저장되고 Daybook 서버로 보내지 않습니다. 앱을 지우거나 설정의 <b>기기 데이터 지우기</b>를 누르면 함께 지워집니다. 아래 1~5의 서버 저장은 Apple로 로그인해 동기화를 켠 경우에만 해당합니다. 로그인하면 그때까지 기기에 만든 일정이 계정으로 옮겨집니다.</p>
@@ -42,6 +42,14 @@
 
 <h2>3-1. 현재 위치 날씨</h2>
 <p>설정에서 <b>현재 위치 날씨</b>를 켠 경우에만 기기의 대략적인 위치를 씁니다. 기기가 좌표를 약 10km 단위로 반올림해 날씨 제공처인 Open-Meteo(open-meteo.com)로 직접 보내 예보를 받습니다. 위치는 Daybook 서버로 보내지 않고 저장하지 않으며, 끄면 더 이상 쓰지 않습니다.</p>
+
+<h2>3-2. 내가 연결한 AI 에이전트</h2>
+<p>Apple로 로그인한 이용자는 설정의 <b>에이전트 연결</b>에서 토큰을 만들어, 자신이 고른 AI 에이전트(예: Claude Code, Hermes)가 자기 계정의 일정과 할 일을 읽거나 바꾸게 할 수 있습니다. 이 연결은 이용자가 직접 만들 때만 생기며, Daybook이 이용자의 일정을 에이전트나 AI 서비스로 먼저 보내지 않습니다.</p>
+<ul>
+  <li>토큰은 그 계정에만 쓰입니다. 서버에는 토큰의 해시만 저장하고 원문은 만들 때 한 번만 보여 줍니다.</li>
+  <li>에이전트가 가져간 정보는 이용자가 고른 에이전트와 그 에이전트가 쓰는 AI 서비스의 방침에 따라 처리됩니다. 어떤 에이전트에 연결할지는 이용자가 정합니다.</li>
+  <li>에이전트가 바꾼 내용은 변경 기록에 토큰 이름과 함께 남습니다. 토큰은 언제든 설정에서 폐기할 수 있고, 폐기하면 바로 막힙니다. 계정을 삭제하면 토큰도 함께 지워집니다.</li>
+</ul>
 
 <h2>4. 보관 위치와 기간</h2>
 <ul>
@@ -83,7 +91,7 @@
 <h2 lang="en">Privacy Policy (English summary)</h2>
 <div lang="en">
 <p>Daybook is a calendar and task app run by an individual developer. You can use it without an account: then everything stays on your device and nothing is sent to our server. If you sign in with Apple to sync, we store only what the app needs to sync your calendar across devices and send reminders: the user identifier Apple provides when you sign in with Apple (no name or email is stored), the events, tasks, categories, notes and settings you enter, your device name, and, if you turn on notifications, an Apple push token.</p>
-<p>We do not collect contacts, photos or advertising identifiers, do not track you, and do not sell or share your data. If you turn on 현재 위치 날씨 (weather for your location), your device sends approximate coordinates (rounded to about 10 km) directly to Open-Meteo to get a forecast; your location is never sent to or stored on our server. AI input runs on your device with Apple's on-device model; only the events or tasks you choose to save are sent to the server. Data is stored on a server operated by the developer in South Korea and sent over HTTPS. Reminder text (event title and time) passes through Apple Push Notification service when notifications are on.</p>
+<p>We do not collect contacts, photos or advertising identifiers, do not track you, and do not sell or share your data. If you turn on 현재 위치 날씨 (weather for your location), your device sends approximate coordinates (rounded to about 10 km) directly to Open-Meteo to get a forecast; your location is never sent to or stored on our server. AI input runs on your device with Apple's on-device model; only the events or tasks you choose to save are sent to the server. If you create an agent token in 설정 → 에이전트 연결 (Agent connection), the AI agent you choose can read or change your calendar through it; that data is then handled by that agent and the AI service it uses. Tokens are stored only as hashes, are limited to your account, and can be revoked at any time. Data is stored on a server operated by the developer in South Korea and sent over HTTPS. Reminder text (event title and time) passes through Apple Push Notification service when notifications are on.</p>
 <p>You can delete your account at any time in <b>Settings → 계정 삭제 (Delete Account)</b>. This immediately deletes your data and Apple sign-in link from the server; daily backups are removed within 30 days. Contact: <a href="mailto:daybook0819@gmail.com">daybook0819@gmail.com</a></p>
 </div>
 </main>

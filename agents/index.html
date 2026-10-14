@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Daybook 에이전트 연결</title>
+<style>
+  :root { color-scheme: light dark; --fg: #1c1c1e; --sub: #6e6e73; --bg: #ffffff; --line: #e5e5ea; --code: #f2f2f7; }
+  @media (prefers-color-scheme: dark) { :root { --fg: #f2f2f7; --sub: #98989f; --bg: #000000; --line: #2c2c2e; --code: #1c1c1e; } }
+  body { margin: 0; background: var(--bg); color: var(--fg); font: 16px/1.65 -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", sans-serif; }
+  main { max-width: 680px; margin: 0 auto; padding: 32px 16px 64px; }
+  h1 { font-size: 26px; margin: 0 0 4px; }
+  h2 { font-size: 18px; margin: 32px 0 8px; padding-top: 16px; border-top: 1px solid var(--line); }
+  .sub { color: var(--sub); font-size: 14px; }
+  ul, ol { padding-left: 20px; }
+  li { margin: 4px 0; }
+  a { color: #0a84ff; }
+  pre { background: var(--code); border-radius: 10px; padding: 12px 14px; overflow-x: auto; font-size: 13px; line-height: 1.5; }
+  code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+</style>
+</head>
+<body>
+<main>
+<h1>에이전트 연결</h1>
+<p class="sub">내 AI 에이전트가 내 Daybook 일정을 읽고 쓰게 하는 방법</p>
+
+<p>Daybook은 MCP(Model Context Protocol) 서버를 제공합니다. Claude Code, Hermes처럼 MCP를 지원하는 에이전트에 주소와 토큰을 넣으면, 에이전트가 내 계정의 일정과 할 일을 보고 만들 수 있습니다. 토큰은 내 계정에만 쓰이고, 다른 사람의 일정에는 닿지 않습니다.</p>
+<p>Apple로 로그인한 경우에만 쓸 수 있습니다. 로그인 없이 쓰는 경우에는 일정이 기기에만 있어 연결할 서버가 없습니다.</p>
+
+<h2>1. 토큰 만들기</h2>
+<ol>
+  <li>Daybook 앱에서 <b>설정 → 에이전트 연결</b>을 엽니다.</li>
+  <li><b>새 토큰 만들기</b>를 누르고 이름(예: <code>claude-code</code>)과 권한을 고릅니다.
+    <ul>
+      <li><b>읽기만</b>: 일정을 보고 찾기만 합니다.</li>
+      <li><b>읽고 쓰기</b>: 일정과 할 일을 만들고 고치고 지울 수 있습니다.</li>
+    </ul>
+  </li>
+  <li>만든 직후 화면에서 <b>MCP 주소</b>와 <b>토큰</b>을 복사합니다. 토큰은 이 화면을 닫으면 다시 볼 수 없습니다. 잃어버리면 폐기하고 새로 만드세요.</li>
+</ol>
+
+<h2>2. Claude Code</h2>
+<p>터미널에서 한 줄로 추가합니다. 앱의 결과 화면에 이 명령이 그대로 복사되는 단추가 있습니다.</p>
+<pre><code>claude mcp add --transport http daybook &lt;MCP 주소&gt; \
+  --header "Authorization: Bearer &lt;토큰&gt;"</code></pre>
+<p>추가한 뒤 Claude Code에서 "오늘 일정 알려 줘"처럼 물어보면 됩니다.</p>
+
+<h2>3. Hermes</h2>
+<p>프로필의 <code>config.yaml</code>에 <code>mcp_servers</code> 항목을 더합니다. 토큰은 파일에 직접 쓰기보다 환경 변수로 두는 것을 권합니다.</p>
+<pre><code>mcp_servers:
+  daybook:
+    url: "&lt;MCP 주소&gt;"
+    headers:
+      Authorization: "Bearer ${DAYBOOK_MCP_TOKEN}"
+    timeout: 60
+    connect_timeout: 10</code></pre>
+
+<h2>4. 그 밖의 에이전트</h2>
+<p>원격 MCP 서버(Streamable HTTP)를 지원하는 에이전트라면 같은 방식으로 연결합니다. 설정에 다음 두 가지를 넣으세요.</p>
+<ul>
+  <li>주소: 앱에 보이는 MCP 주소(끝이 <code>/mcp</code>)</li>
+  <li>헤더: <code>Authorization: Bearer &lt;토큰&gt;</code></li>
+</ul>
+<p>설정 형식은 에이전트마다 다르니 그 에이전트의 MCP 설명서를 따르세요.</p>
+
+<h2>5. 할 수 있는 일</h2>
+<ul>
+  <li>오늘 날짜와 시간대 확인, 일정과 할 일 목록 보기, 검색, 빈 시간 찾기, 구독 결제 보기</li>
+  <li>읽고 쓰기 토큰이면: 일정과 할 일 만들기, 고치기, 완료, 지우기, 잘못 바꾼 것 되돌리기</li>
+</ul>
+<p>에이전트가 바꾼 내용은 변경 기록에 토큰 이름과 함께 남고, 앱에서 바로 보입니다.</p>
+
+<h2>6. 한도와 보안</h2>
+<ul>
+  <li>토큰은 계정마다 10개까지 만들 수 있습니다.</li>
+  <li>토큰마다 호출은 1분에 120번, 쓰기는 1분에 60건까지입니다. 넘으면 잠시 뒤에 다시 시도하라는 응답이 옵니다.</li>
+  <li>토큰은 비밀번호처럼 다루세요. 남에게 보이지 않게 하고, 쓰지 않거나 노출된 것 같으면 <b>설정 → 에이전트 연결</b>에서 바로 폐기하세요. 폐기하면 즉시 막힙니다.</li>
+  <li>에이전트에게 넘긴 일정은 그 에이전트(와 그 에이전트가 쓰는 AI 서비스)가 처리합니다. 자세한 내용은 <a href="../privacy/">개인정보 처리방침</a> 3-2를 보세요.</li>
+</ul>
+
+<h2>문의</h2>
+<p><a href="mailto:daybook0819@gmail.com">daybook0819@gmail.com</a></p>
+</main>
+</body>
+</html>
